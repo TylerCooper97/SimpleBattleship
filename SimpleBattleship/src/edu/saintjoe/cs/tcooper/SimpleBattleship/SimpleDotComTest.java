@@ -10,11 +10,7 @@ public class SimpleDotComTest {
 		
 		String userGuess = "2";
 		String result = dot.checkYourself(userGuess);
-		String testResult = "failed";
-		if (result.equals("hit")) {
-			testResult = "passed";
-		}
-		System.out.println(testResult);
+		
 	}
 
 }
