@@ -1,42 +1,29 @@
 package edu.saintjoe.cs.tcooper.SimpleBattleship;
 
+import java.util.ArrayList;
+
 public class SimpleDotCom {
-	//these next two are our instance variables
 	
-	//array that holds the location of our dot com
-	int[] locationCells;
+	private ArrayList<String> locationCells;
+	// private int numOfHits
+	//don't need that now
 	
-	//keep track of how many times the user guessed a spot where a dot com piece is living
-	int numOfHits = 0;
-	
-	/* ----------------------------------------------------------------------*/
-	//stores which cells of our big array are occupied by our dot com
-	public void setLocationCells(int[] locs) {
-		locationCells = locs;
+	public void setLocationCells(ArrayList<String>loc) {
+		locationCells = loc;
 	}
 	
-	//checks for a hit, miss, or kill
-	//input parameter: a guess, which is a string representation of a number of an array location
-	public String checkYourself(String stringGuess) {
-		
-		//convert from string type to binary type so we can do math with it
-		int guess = Integer.parseInt(stringGuess);
-		
-		//default thing is to miss
+	public String checkYourself(String userInput) {
 		String result = "miss";
-		
-		//this is exactly a for each in app inventor
-		for (int cell : locationCells) {
-			if (guess == cell) {
+		int index = locationCells.indexOf(userInput);
+		if (index >= 0) {
+			locationCells.remove(index);
+			
+			if (locationCells.isEmpty()) {
+				result = "kill";
+			} else {
 				result = "hit";
-				numOfHits++;
-				break;
-			}
-		}
-		if (numOfHits == locationCells.length) {
-			result = "kill";
-		}
-		System.out.println(result);
+			}//close if
+		}//close outer if
 		return result;
-	}
-}
+	}//close method
+}//close class
